@@ -1,0 +1,39 @@
+{
+  "entities": {
+    "Gift": {
+      "title": "Gift",
+      "description": "A wishlist item",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Name of the gift" },
+        "url": { "type": "string", "description": "Link to the gift" },
+        "imageUrl": { "type": "string", "description": "Image URL of the gift" },
+        "status": { "type": "string", "enum": ["available", "reserved"], "description": "Current status" },
+        "reservedByUid": { "type": "string", "description": "UID of the user who reserved it" },
+        "reservedByName": { "type": "string", "description": "Name of the user who reserved it" },
+        "createdAt": { "type": "timestamp", "description": "Creation timestamp" },
+        "updatedAt": { "type": "timestamp", "description": "Last update timestamp" }
+      },
+      "required": ["title", "status", "createdAt", "updatedAt"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "An admin user",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "description": "Admin email" }
+      },
+      "required": ["email"]
+    }
+  },
+  "firestore": {
+    "/gifts/{giftId}": {
+      "schema": "Gift",
+      "description": "The list of gifts"
+    },
+    "/admins/{userId}": {
+      "schema": "Admin",
+      "description": "The list of authorized admins"
+    }
+  }
+}
